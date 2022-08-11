@@ -1,0 +1,253 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+ul {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+    color: inherit
+}
+
+body {
+    padding-top: 25vh;
+}
+
+.container {
+    margin: 0 auto;
+    max-width: 660px;
+    position: relative;
+}
+
+.ticks {
+    display: flex;
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    gap: 5px;
+    margin-left: 80px;
+    justify-content: center;
+}
+
+.ticks__btn {
+    cursor: pointer;
+    border: none;
+    background-color: transparent;
+    width: 60px;
+    height: 20px;
+    border-radius: 11px;
+    color: #7D828B;
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+}
+
+.ticks__btn--new {
+    background-color: #F3F4F6;
+}
+
+.ticks__btn--flex {
+    display: flex;
+    justify-content: space-between;
+}
+
+.ticks__btn-inner {
+    display: flex;
+    flex-direction: column;
+    margin-top: -1px;
+    color: #000000;
+    font-weight: 600;
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    margin-right: 9px;
+    
+}
+
+.ticks__btn-count {
+    margin-left: 2px;
+    color: #000000;
+    font-weight: 600;
+    font-family: 'Inter', sans-serif;
+}
+
+.nine {
+ margin-bottom: -4px;
+ font-size: 11px;
+}
+
+.ticks__btn--today {
+    font-weight: 500;
+    color: #000000;
+    font-family: 'Inter', sans-serif;
+}
+
+.ticks__data {
+    padding-left: 5px;
+    padding-top: 3px;
+}
+
+.ticks__btn:focus {
+    color: #fff;
+    background-color: #121212;
+}
+
+.ticks__btn:focus .ticks__btn-count {
+    color: #7D828B;
+}
+
+.ticks__btn:focus .ticks__btn-inner {
+    color: #7D828B;
+}
+
+.popup {
+    position: absolute;
+    width: 200px;
+    height: 290px;
+    background-color: #121212;
+    top: 2%;
+    left: 33%;
+    border-radius: 10px;
+    transition: .3s all;
+
+    visibility: hidden;
+    opacity: 0;
+    transform: translateY(-5px);
+
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    padding: 20px;
+    font-weight: 400;
+    color: #fff;
+}
+
+.popup.active {
+    visibility: visible;
+    opacity: 1;
+    transform: translateY(0px);
+}
+
+.popup__top {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    align-items: center;
+}
+
+.popup__title {
+    font-weight: 600;
+    font-size: 14px;
+    letter-spacing: normal;
+    letter-spacing: -0.0875px;
+}
+
+.popup__btn {
+    padding: 3px 8px;
+    background-color: rgba(255, 255, 255, 0.15);
+    border-radius: 5px;
+    font-weight: 500;
+    letter-spacing: -0.075px;
+}
+
+.popup__date {
+    color: #7D828B;
+    letter-spacing: -0.075px;
+    line-height: 15px;
+    margin-bottom: 15px;
+}
+
+.popup__list-item + .popup__list-item {
+    margin-top: 6px;
+}
+
+.popup__list-value {
+    color: #7D828B;
+}
+
+.popup__hr {
+    background-color: #EDEEF0;
+    height: 1px;
+    width: 100%;
+    opacity: 0.1;
+    margin-top: 8px;
+    margin-bottom: 8px;
+}
+
+.popup__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    row-gap: 10px;
+    column-gap: 10px;
+}
+
+.popup__grid-item {
+    font-weight: 500;
+    letter-spacing: -0.03px;
+    position: relative;
+    font-size: 11px;
+}
+
+.popup__grid-item--one::before {
+    content: '';
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    background-color: #4A48CF;
+    border-radius: 2.5px;
+    top: 50%;
+    left: -8px;
+    transform: translateY(-50%);
+}
+
+.popup__grid-item--two::before {
+    content: '';
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    background-color: #007AFF;
+    border-radius: 2.5px;
+    top: 50%;
+    left: -8px;
+    transform: translateY(-50%);
+}
+
+.popup__grid-item--three::before {
+    content: '';
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    background-color: #5AC8FA;
+    border-radius: 2.5px;
+    top: 50%;
+    left: -8px;
+    transform: translateY(-50%);
+}
+
+.popup__grid-item--four::before {
+    content: '';
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    background-color: #7D828B;
+    border-radius: 2.5px;
+    top: 50%;
+    left: -8px;
+    transform: translateY(-50%);
+}
+
+.popup__grid-item--others::before {
+    content: '';
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    background-color: #D8D8D8;
+    border-radius: 2.5px;
+    top: 50%;
+    left: -8px;
+    transform: translateY(-50%);
+}
+
+.ticks__btn--unactive {
+    pointer-events: none;
+}

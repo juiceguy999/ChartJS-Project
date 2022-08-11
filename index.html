@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"
+        integrity="sha512-ElRFoEQdI5Ht6kZvyzXhYG9NqjtkmlkfYk0wr6wHxU9JEHakS7UJZNeml5ALk+8IKlU6jDgMabC3vkumRokgJA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="stylesheet" href="style.css">
+    <title>ChartJS Project</title>
+</head>
+
+<body>
+    <div class="container">
+        <canvas id="myChart">
+
+        </canvas>
+        <div class="ticks">
+            <button class="ticks__btn ticks__btn--new ticks__btn--one">26.06 <span class="ticks__btn-count">1</span></button>
+            <button class="ticks__btn ticks__btn--new ticks__btn--two">27.06 <span class="ticks__btn-count">3</span></button>
+            <button class="ticks__btn ticks__btn--three ticks__btn--unactive">28.06</button>
+            <button class="ticks__btn ticks__btn--four ticks__btn--unactive">29.06</button>
+            <button class="ticks__btn ticks__btn--new ticks__btn--five">30.06 <span class="ticks__btn-count">1</span></button>
+            <button class="ticks__btn ticks__btn--new ticks__btn--six">01.07 <span class="ticks__btn-count">5</span></button>
+            <button class="ticks__btn ticks__btn--flex ticks__btn--new ticks__btn--seven"><span class="ticks__data">02.07</span> <div class="ticks__btn-inner"><span class="nine">9</span> <span>+</span> </div></button>
+            <button class="ticks__btn ticks__btn--eight ticks__btn--unactive">03.07</button>
+            <button class="ticks__btn ticks__btn--today ticks__btn--nine ticks__btn--unactive">Сегодня</button>
+        </div>
+
+        <div class="popup">
+            <div class="popup__inner">
+                <div class="popup__top">
+                    <div class="popup__title">Изменения</div>
+                    <a href="#" class="popup__btn">Список</a>
+                </div>
+
+                <div class="popup__date">
+                    Все правки товаров за <span class="popup__date-value">24 июня 2022 года</span>
+                </div>
+
+                <div class="popup__data">
+                    <ul class="popup__list">
+                        <li class="popup__list-item">— Описание<span class="popup__list-value"></span></li>
+                        <li class="popup__list-item">— Новые фотографии <span class="popup__list-value">(+4)</span></li>
+                        <li class="popup__list-item">— Новый склад <span class="popup__list-value">(+1)</span></li>
+                        <li class="popup__list-item">— Изменение обложки<span class="popup__list-value"></span></li>
+                        <li class="popup__list-item">— Новое имя<span class="popup__list-value"></span></li>
+                        <li class="popup__list-item">— Цена <span class="popup__list-value">(+50&#8381)</span></li>
+                    </ul>
+                </div>
+
+                <div class="popup__hr"></div>
+
+                <div class="popup__grid">
+                    <div class="popup__grid-item popup__grid-item--one">Товар 1</div>
+                    <div class="popup__grid-item popup__grid-item--two">Товар 2</div>
+                    <div class="popup__grid-item popup__grid-item--three">Товар 3</div>
+                    <div class="popup__grid-item popup__grid-item--four">Товар 4</div>
+                    <div class="popup__grid-item popup__grid-item--others">Другие</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const down1 = (ctx, value) => (ctx.p1.parsed.x === 8 || ctx.p1.parsed.x === 9 || ctx.p1.parsed.x === 7) ? value : undefined;
+        const down2 = (ctx, value) => (ctx.p1.parsed.x === 8 || ctx.p1.parsed.x === 9 || ctx.p1.parsed.x === 7) ? value : undefined;
+        const down3 = (ctx, value) => (ctx.p1.parsed.x === 8 || ctx.p1.parsed.x === 9 || ctx.p1.parsed.x === 7) ? value : undefined;
+        const down4 = (ctx, value) => (ctx.p1.parsed.x === 8 || ctx.p1.parsed.x === 9 || ctx.p1.parsed.x === 7) ? value : undefined;
+
+        let myChart = document.getElementById('myChart').getContext('2d');
+
+        Chart.defaults.font.size = '11';
+        Chart.defaults.font.family = 'Inter';
+        Chart.defaults.color = '#7D828B';
+
+        let productsChart = new Chart(myChart, {
+            type: 'line',
+
+            data: {
+                labels: [' ', '26.06', '27.06', '28.06', '29.06', '30.06', '01.07', '02.07', '03.07', 'Сегодня'],
+                datasets: [
+                    {
+                        // label: 'Товар 1',
+                        data: [53000, 51200, 59000, 73000, 79000, 72000, 83200, 84000, 75000, 85000],
+                        borderColor: '#4A48CF',
+
+                        segment: {
+                            borderColor: ctx => down1(ctx, 'rgba(74, 72, 207, 0.2)')
+                        },
+
+                        
+                        pointRadius: [0, 5, 5, 0, 0, 5, 5, 5, 0, 0],
+
+                        pointHoverBackgroundColor: '#4A48CF'
+
+
+                    },
+                    {
+                        // label: 'Товар 2',
+                        data: [19000, 22000, 33000, 45000, 51000, 52000, 39800, 36000, 54000, 52000],
+                        borderColor: '#007AFF',
+
+                        segment: {
+                            borderColor: ctx => down2(ctx, 'rgba(0, 122, 255, 0.2)')
+
+                        },
+
+                        pointRadius: [0, 5, 5, 0, 0, 5, 5, 5, 0, 0],
+
+                        pointHoverBackgroundColor: '#007AFF'
+                    },
+                    {
+                        // label: 'Товар 3',
+                        data: [0, 7000, 3000, 8000, 7000, 6000, 5560, 7000, 6500, 6000],
+                        borderColor: '#5AC8FA',
+
+                        segment: {
+                            borderColor: ctx => down3(ctx, 'rgba(90, 200, 250, 0.2)')
+
+                        },
+
+                        pointRadius: [0, 5, 5, 0, 0, 5, 5, 5, 0, 0],
+
+                        pointHoverBackgroundColor: '#5AC8FA'
+                    },
+                    {
+                        // label: 'Товар 4',
+                        data: [0, 500, 1500, 1400, 1000, 800, 1370, 3000, 1500, 2500],
+                        borderColor: '#7D828B',
+
+                        segment: {
+                            borderColor: ctx => down4(ctx, 'rgba(125, 130, 139, 0.2)')
+
+                        },
+
+                        pointRadius: [0, 5, 5, 0, 0, 5, 5, 5, 0, 0],
+
+                        pointHoverBackgroundColor: '#7D828B'
+                    },
+
+                    {
+                        // label: 'Другие',
+                        data: [3000, 10000, 12000, 12500, 13000, 20000, 8110, 30000, 33000, 32000],
+                        borderColor: '#F3F4F6',
+                        pointRadius: [0, 0, 0, 0, 0, 0, 5, 5, 0, 0],
+
+                        pointHoverBackgroundColor: '#F3F4F6'
+                    },
+
+                ]
+            },
+
+            options: {
+
+               
+
+                
+                scales: {
+                    y: {
+                        suggestedMin: 0,
+                        suggestedMax: 100000,
+
+                        grid: {
+                            drawBorder: false
+                        },
+
+                        ticks: {
+                            stepSize: 20000,
+                            callback: function (value) {
+                                const valueLegend = this.getLabelForValue(value);
+
+                                if (valueLegend.length === 7) {
+                                    return valueLegend.substr(0, 3) + 'т.'
+                                }
+
+                                if (valueLegend.length === 6) {
+                                    return valueLegend.substr(0, 2) + 'т.'
+                                }
+
+                                if (valueLegend.length === 1) {
+                                    return valueLegend.substr(0, 1) + 'т.'
+                                }
+
+
+                            },
+
+
+                        },
+
+
+                    },
+
+                    x: {
+                        grid: {
+                            display: false
+                        },
+
+                        ticks: {color: 'transparent'}
+                    }
+
+
+
+
+                },
+
+                plugins: {
+
+                        
+
+                    legend: {
+                        display: false
+                    },
+
+                    tooltip: {
+
+                        callbacks: {
+                            label: function (context) {
+
+                                let formval = context.formattedValue;
+                                let numval = parseInt(formval.replaceAll(/\s/g, '')) / 1000;
+                                let finalval = numval.toString().replace('.', ',') + 'т.';
+
+                                return finalval;
+
+                            }
+                        },
+
+                        titleFont: {
+                            size: 0
+                        },
+
+                        displayColors: false,
+
+                        backgroundColor: function colorItems(tooltipItem) {
+                            let lineColor = tooltipItem.tooltip.labelColors[0].borderColor;
+                            if (lineColor === '#F3F4F6') {
+                                tooltipItem.tooltip.labelTextColors[0] = '#000000';
+                            }
+
+
+
+                            return lineColor;
+                        },
+
+                        xAlign: 'left',
+
+                        padding: {
+                            left: 8,
+                            top: 0,
+                            right: 3,
+                            bottom: 3
+                        }
+
+                    }
+                },
+
+                elements: {
+                    point: {
+                        radius: 5,
+                        backgroundColor: '#fff',
+                        borderWidth: 2,
+
+
+                    }
+                }
+            }
+        })
+    </script>
+    <script src="popup.js"></script>
+</body>
+
+</html>
